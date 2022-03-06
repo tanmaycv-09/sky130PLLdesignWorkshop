@@ -1,6 +1,6 @@
 # Phase-Locked Loop(PLL) IC design on Open-Source Google-Skywater 130nm Workshop
 
-<a href="https://www.vlsisystemdesign.com/pll-design-using-sky130/"><img width="833" alt="Screenshot 2022-03-06 at 9 00 55 AM" src="https://user-images.githubusercontent.com/77117825/156908010-9d44ba40-339d-4047-97e7-cbef360f11a5.png">
+<a href="https://www.vlsisystemdesign.com/pll-design-using-sky130/"><img width="833" alt="Screenshot 2022-03-06 at 9 00 55 AM" src="https://user-images.githubusercontent.com/77117825/156908010-9d44ba40-339d-4047-97e7-cbef360f11a5.png"></a>
 
 # Brief Description of the Workshop
   
@@ -178,8 +178,8 @@ On the first day of the workshop, basic theory of the PLL was taught. The multip
  - Now we have to install the dependancies which can be found at the [Install](http://opencircuitdesign.com/magic/) page
  - Now go into the magic folder using the "cd" command and compile magic using ./configure command.
  - Run the configure, make and install commands on the terminal.
- - Search open pdks on google and select the RTimothy/open_pdks
- - Clone this repository and compile it or download sky130A.tech and place it in the main folder.
+ - Search open pdks on google and select the [RTimothy/open_pdks](https://github.com/RTimothyEdwards/open_pdks)
+ - Clone this repository and compile it or download [sky130A.tech](https://drive.google.com/file/d/18BG4zzpRrcHP0UoBcNLA3sWFDVdNlUtp/view) and place it in the main folder.
  - **This is the end of the tasks of the first day.
 
                       
