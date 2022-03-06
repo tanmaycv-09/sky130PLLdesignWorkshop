@@ -7,8 +7,27 @@
  This workshop was of 2 days conducted by VLSI System Design on the topic Phase-Locked Loop(PLL) IC design on Open-Source Google-Skywater 130nm. Over the course of two days this workshop explains the PLL inside out and we also have to design a PLL using certain simulation softwares (ngspice and magic). On the first day of the workshop, we are introduced to PLL and we discuss the circuitry required to design one. We discuss in depth about the individual components used and their role in operating the PLL. We also install the softwares on the first day and this concludes the first day. On the second day of the workshop, we start by preparing spice files and conducting spice simulations of individual components of the PLL. Then using these components, we create a spice file that will work effectively as a complete PLL. After this, we look into the layouts of the individual components and finally combine them to form a final PLL layout. We perform post-layout simulations on the individual components and end the day with discussion on tapeouts and Caravel.
 
   # Table of Contents 
-  
-  
+   - [Day1 PLL Theory and Lab Setup](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/blob/main/README.md#day1-pll-theory-and-lab-setup)
+     - [Part-1 Introduction to PLL](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-1-introduction-to-pll)
+     - [Part 2: Introduction to Phase Frequency Detector](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-2-introduction-to-phase-frequency-detector)
+     - [Part 3: Introduction to Charge Pump](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-3-introduction-to-charge-pump)
+     - [Part 4: Introduction to Voltage Controlled Oscillator and Frequency Divider](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-4-introduction-to-voltage-controlled-oscillator-and-frequency-divider)
+     - [Part 5: Tool Setup and Design Flow](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-5-tool-setup-and-design-flow)
+     - [Part 6: Introduction to PDK, specifications and pre-layout circuits](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-6-introduction-to-pdk-specifications-and-pre-layout-circuits)
+     - [Part 7: Circuit design simulation tool - Ngspice Setup](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-7-circuit-design-simulation-tool---ngspice-setup)
+     - [Part 8: Layout design tool - Magic Setup](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-8-layout-design-tool---magic-setup)
+   - [Day 2: PLL Labs and post-layout simulations](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#day-2-pll-labs-and-post-layout-simulations)
+     - [Part - 9  PLL components circuit simulations](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part---9--pll-components-circuit-simulations)
+     - [Part 10: Steps to combine PLL sub-circuits and PLL full design simulation](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-10-steps-to-combine-pll-sub-circuits-and-pll-full-design-simulation)
+     - [Part 11: Troubleshooting steps](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-11-troubleshooting-steps)
+     - [Part 12: Layout design](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-12-layout-design)
+     - [Part 13: Layout Walkthrough](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-13-layout-walkthrough)
+     - [Part 14: Parasitic Extraction ](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-14-parasitic-extraction)
+     - [Part 15: Post Layout simulations](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-15-post-layout-simulations)
+     - [Part 16: Tapeout theory](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-16-tapeout-theory)
+     - [Conclusion, Opinion & Challenges ](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#conclusion-opinion--challenges)
+     - [References](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#references)
+
   # Day1 PLL Theory and Lab Setup
 On the first day of the workshop, basic theory of the PLL was taught. The multiple components that the PLL constitutes were discussed in depth and their MOSFET based circuits were seen. The tools that were to be installed were - Ngspice and Magic. The steps for the installations were told and a walkthrough video was presented if any difficulties were faced. The MOSFET based circuits that were taken were chosen such that they were up-to-date with the latest advancements and minimal disadvantages.
   
