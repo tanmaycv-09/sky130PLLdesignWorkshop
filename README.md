@@ -664,6 +664,13 @@ On the first day of the workshop, basic theory of the PLL was taught. The multip
 
 <p align = "center"><img width="1295" alt="Screenshot 2022-03-05 at 8 26 37 PM" src="https://user-images.githubusercontent.com/77117825/156913894-3b88c68b-492b-460b-ae0a-ca618a60da25.png"></p>
 
+ > zoomed view 1
+<p align="center"><img width="836" alt="Screenshot 2022-03-06 at 1 12 15 PM" src="https://user-images.githubusercontent.com/77117825/156916066-92061bab-00ea-494d-aa6b-e2f7d1389271.png"></p>
+
+> zoomed view 2 ( if we zoom in at the bottom, we can the the difference between the reference signal in red and the output frequency divided by 8 signal as shown below:)
+<p align="center"><img width="836" alt="Screenshot 2022-03-06 at 2 26 33 PM" src="https://user-images.githubusercontent.com/77117825/156916128-b74de461-0b0f-4e71-be4f-a0aa5acfb87b.png"></p>
+
+
 
 
 
