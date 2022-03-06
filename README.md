@@ -1,6 +1,6 @@
 # Phase-Locked Loop(PLL) IC design on Open-Source Google-Skywater 130nm Workshop
 
-<a href="https://www.vlsisystemdesign.com/pll-design-using-sky130/"><img width="833" alt="Screenshot 2022-03-06 at 9 00 55 AM" src="https://user-images.githubusercontent.com/77117825/156908010-9d44ba40-339d-4047-97e7-cbef360f11a5.png"></a>
+<p align="center"><a href="https://www.vlsisystemdesign.com/pll-design-using-sky130/"><img width="833" alt="Screenshot 2022-03-06 at 9 00 55 AM" src="https://user-images.githubusercontent.com/77117825/156908010-9d44ba40-339d-4047-97e7-cbef360f11a5.png"></a></p>
 
 # Brief Description of the Workshop
   
@@ -126,7 +126,7 @@ On the first day of the workshop, basic theory of the PLL was taught. The multip
   
     - Development Flow:
   
-  <img width="244" alt="Screenshot 2022-03-06 at 11 15 09 AM" src="https://user-images.githubusercontent.com/77117825/156910939-20d2d822-7c0f-4f82-911c-59f7d8381180.png">
+ <p align="center"> <img width="244" alt="Screenshot 2022-03-06 at 11 15 09 AM" src="https://user-images.githubusercontent.com/77117825/156910939-20d2d822-7c0f-4f82-911c-59f7d8381180.png"></p>
   
    - It is often the case that after each simulation phase, we would need to make several changes to the circuit to bring it closer to the required specifications.
 
