@@ -4,4 +4,4 @@
 
 # Brief Description of the Workshop
   
-  This workshop was of 2 days conducted by ![VLSI System Design](https://www.vlsisystemdesign.com/)
+This workshop was of 2 days conducted by [VLSI System Design](https://www.vlsisystemdesign.com/)
