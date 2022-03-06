@@ -191,7 +191,64 @@ On the first day of the workshop, basic theory of the PLL was taught. The multip
  - To make the file type the following command in the terminal - touch FreqDiv.cir.                      
                       
  # Part - 9  PLL components circuit simulations
- 
- [FDcir.txt](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/files/8192097/FDcir.txt)
+ > Frequency Divider Circuit
+
+       - *FD
+      .include spice_lib/sky130.lib
+
+       xm1 1 2 3 1 sky130_fd_pr__pfet_01v8 l=150n w=720n 
+       xm2 0 2 3 0 sky130_fd_pr__nfet_01v8 l=150n w=360n 
+
+       xm3 3 Clkb 4 1 sky130_fd_pr__pfet_01v8 l=150n w=420n 
+       xm4 3 Clk 4 0 sky130_fd_pr__nfet_01v8 l=150n w=840n 
+
+       xm7 1 4 5 1 sky130_fd_pr__pfet_01v8 l=150n w=720n 
+       xm8 0 4 5 0 sky130_fd_pr__nfet_01v8 l=150n w=360n 
+
+       xm9 5 Clk 6 1 sky130_fd_pr__pfet_01v8 l=150n w=420n 
+       xm10 5 Clkb 6 0 sky130_fd_pr__nfet_01v8 l=150n w=640n 
+
+       xm11 1 6 2 1 sky130_fd_pr__pfet_01v8 l=150n w=720n 
+       xm12 0 6 2 0 sky130_fd_pr__nfet_01v8 l=150n w=360n 
+
+       xm13 1 Clk Clkb 1 sky130_fd_pr__pfet_01v8 l=150n w=720n 
+       xm14 0 Clk Clkb 0 sky130_fd_pr__nfet_01v8 l=150n w=360n 
+
+       v1 1 0 1.8
+       v2 Clk 0 PULSE 0 1.8 1n 6p 6p 5ns 10ns
+
+       c1 6 0 10f
+       .control
+       tran 0.1ns 0.2us
+       plot v(6) v(Clk)+2
+       .endc
+
+       .end
+
+> Output 
+
+<p align="center"><img width="409" alt="FD waveform" src="https://user-images.githubusercontent.com/77117825/156912838-c077737a-16b2-4261-8706-65a2528bfe86.png"></p>
+
+> Command window result 
+
+     - Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+1                                          1.8
+2                                      1.79148
+3                                  1.10966e-06
+clkb                                       1.8
+4                                     0.884093
+clk                                          0
+5                                     0.633474
+6                                     0.633474
+v2#branch                                    0
+v1#branch                         -1.32296e-05
+
+ Reference value :  0.00000e+00
+
+
 
                       
