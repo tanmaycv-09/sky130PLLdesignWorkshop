@@ -800,6 +800,9 @@ On the first day of the workshop, basic theory of the PLL was taught. The multip
    - This performance is possible because of the circuit that we have chosen for the PFD.
    - The default circuit that was discussed in the theory has the dead zone issue which doesn't allow the detection of such narrow phase differences.
 
-
-
+# The post layout simulation
+  - To simulate the circuit after layout we need to write the following code in the file "PLL_PostLay.cir":
+     [Post Layout circuit.txt](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/files/8192434/Post.Layout.circuit.txt)
+           
+       
 
