@@ -804,5 +804,85 @@ On the first day of the workshop, basic theory of the PLL was taught. The multip
   - To simulate the circuit after layout we need to write the following code in the file "PLL_PostLay.cir":
      [Post Layout circuit.txt](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/files/8192434/Post.Layout.circuit.txt)
            
-       
+   - To simulate the code type first, enter the directory where the file is saved using the "cd" command in terminal.
+   - Now simulate the file using the ngspice command 
+   - We are going to receive two plot outputs for this file because of the following lines in the ".control" instruction:
+     
+         -.control
+         tran 0.1ns 180us
+         plot v(Clk_Ref) v(Clk_Out_by_8) v(Clk_Out_by_4)+2 v(Clk_Out_by_2)+4 v(Clk_Out)+6 v(up)+8 v(down)+10 v(VCtrl)+12
+         plot v(Clk_Ref) v(Clk_Out_by_8)+2
+         .endc 
+     
+     - The first post-layout plot that we receive is much like the pre-layout plot:
+   <p align="center"><img width="833" alt="Screenshot 2022-03-06 at 5 04 27 PM" src="https://user-images.githubusercontent.com/77117825/156921237-16ed43fb-42dd-4388-8cd8-70936f9398fc.png"></p>
+   
+   - When we zoom into into it we get:
+ 
+   <p align="center"> <img width="835" alt="Screenshot 2022-03-06 at 5 05 37 PM" src="https://user-images.githubusercontent.com/77117825/156921292-eb871870-8d14-4e4c-b181-4e23049ccc63.png"></p>
 
+ - We zoom in further into the plot to get:
+
+  <p align="center"><img width="835" alt="Screenshot 2022-03-06 at 5 05 37 PM" src="https://user-images.githubusercontent.com/77117825/156921315-3e3f4805-4a6c-4c1d-b78f-8ed3b685d6dc.png"></p>
+  
+   - Finally when we zoom in onto the region 99.9us and 100us we get:
+
+
+<p align="center"><img width="836" alt="Screenshot 2022-03-06 at 5 07 10 PM" src="https://user-images.githubusercontent.com/77117825/156921336-b475337e-1e01-4a86-9abb-629a1561004c.png"></p>
+
+ - The second plot that we get is the output clock and reference clock signals plotted as:
+<p align="center"><img width="834" alt="Screenshot 2022-03-06 at 5 08 05 PM" src="https://user-images.githubusercontent.com/77117825/156921376-9b61c58c-91fa-44d7-aa76-73ae1a30bee7.png"></p>
+
+ - When we zoom into it we get:
+
+<p align="center"><img width="834" alt="Screenshot 2022-03-06 at 5 09 08 PM" src="https://user-images.githubusercontent.com/77117825/156921405-69a5b918-373d-462d-b5d0-2b853f62708b.png"></p>
+
+   - For the mcq on post layout simulation
+     
+      - Create a new directory containing "sky130nm.lib" and "PFD.spice" in it.
+      - Enter this directory through the terminal and type the command nano PFD_postlay.cir
+      - Type the following code in it:
+      
+            - .include sky130nm.lib
+              .include PFD.spice
+
+              xx1 Ref_Clk Up Down Clk2 GND VCC PFD
+
+              v1 VDD GND 1.8v
+              
+              v2 Ref_Clk GND PULSE 0 1.8v 0 6p 6p 40n 80n
+
+              v3 Clk2 GND PULSE 0 1.8v 0.25n 6p 6p 40n 80n
+              
+              .control 
+              tran 0.1n 5u
+              plot v(Up) v(Down)+2 v(Ref_Clk)+4 v(Clk2)+6
+              .endc
+
+              .end    
+              
+              
+       - In the terminal, it looks like:
+<p align="center"><img width="835" alt="Screenshot 2022-03-06 at 5 12 39 PM" src="https://user-images.githubusercontent.com/77117825/156921500-4dfb1287-905d-46e2-8168-f25137af09e9.png"></p>
+
+  - The output that we receive looks like:
+
+<p align="center"><img width="841" alt="Screenshot 2022-03-06 at 5 13 33 PM" src="https://user-images.githubusercontent.com/77117825/156921529-10781cc8-3f32-48a0-be55-5d7b06a54418.png"></p>
+
+ - And the zoomed output looks like:
+<p align="center"><img width="838" alt="Screenshot 2022-03-06 at 5 14 13 PM" src="https://user-images.githubusercontent.com/77117825/156921550-be5df890-c67e-4ae1-9bb1-57d27a35e1ff.png"></p>
+
+  - In this case the up signal is just a pulse because of the "Dead zone".
+
+# The final PLL layout looks as follows:
+
+<p align="center"><img width="834" alt="Screenshot 2022-03-06 at 5 15 40 PM" src="https://user-images.githubusercontent.com/77117825/156921605-b5bdf4ba-193a-4793-9a99-574d9e0e3ad8.png"></p>
+
+
+
+
+
+
+
+
+ 
