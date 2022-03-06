@@ -45,7 +45,7 @@ On the first day of the workshop, basic theory of the PLL was taught. The multip
   - UP signal is activated if the falling edge of the reference signal is obtained before the falling edge of the output signal and it stays active until the falling edge of the output signal is received.
   - This can be depicted in the state machine format as follows:
   
-  ![WhatsApp Image 2022-03-06 at 10 43 04 AM](https://user-images.githubusercontent.com/77117825/156910203-73a12fc6-7da6-4608-bde7-4781203e4e3d.jpeg)
+  <p align="center"><img src="https://user-images.githubusercontent.com/77117825/156910203-73a12fc6-7da6-4608-bde7-4781203e4e3d.jpeg"></p>
 
   - A good way to detect falling or rising edge is by usng a flip flop
   - Implementing the circuit with flip flops
@@ -90,7 +90,7 @@ On the first day of the workshop, basic theory of the PLL was taught. The multip
  - If the current is high, then the output can be charged faster.
  - By 'starving' the ring oscillator of current, we can control its frequency.
   
- ![WhatsApp Image 2022-03-06 at 10 58 14 AM](https://user-images.githubusercontent.com/77117825/156910502-9c8b8596-d127-48f1-aec1-432c07775164.jpeg)
+ <p align="center"><img src="https://user-images.githubusercontent.com/77117825/156910502-9c8b8596-d127-48f1-aec1-432c07775164.jpeg"></p>
 
  
   ![WhatsApp Image 2022-03-06 at 11 01 39 AM](https://user-images.githubusercontent.com/77117825/156910618-a7d7dd1a-aa00-46ef-82b2-6c42715ad824.jpeg)
@@ -182,9 +182,16 @@ On the first day of the workshop, basic theory of the PLL was taught. The multip
  - Clone this repository and compile it or download [sky130A.tech](https://drive.google.com/file/d/18BG4zzpRrcHP0UoBcNLA3sWFDVdNlUtp/view) and place it in the main folder.
  - **This is the end of the tasks of the first day.
 
+# Day 2: PLL Labs and post-layout simulations
                       
+ On the second day of the workshop, we did a lot of things. Firstly, we performed pre-layout simulations for all the components individually. Then we combined all the files and did a pre-layout spice simulation for the complete PLL. Then we were given a walkthrough of the layout of the PLL. We performed post-layout simulations for the components at this stage and then say the complete layout of the PLL. We created the GDS file for our layout and also saw the further steps required for the tapeout process.                     
                       
+ - We created a circuit description ngspice and we did it for the frequency divider circuit.
+ - A spice file is just a text file with a .spice or .cir extension.
+ - To make the file type the following command in the terminal - touch FreqDiv.cir.                      
                       
-                      
-                      
+ # Part - 9  PLL components circuit simulations
+ 
+ [FDcir.txt](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/files/8192097/FDcir.txt)
+
                       
