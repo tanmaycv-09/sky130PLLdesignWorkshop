@@ -107,8 +107,84 @@ On the first day of the workshop, basic theory of the PLL was taught. The multip
   
  # Part 5: Tool Setup and Design Flow
   
+  - Best to build any software tool from its source code, as it will be the latest version.
+
+  - Tools used:
+
+     - Ngspice: It is used for the transistor level circuit simulation
+     - Magic: It is used for layout design and parasitic extraction
+   - In order to install Ngspice, type the following command in the terminal:
+         - sudo apt-get install ngspice
+   - In order to install Magic, follow the given steps:
+       - sudo apt-get update && sudo apt-get upgrade This step is used to update the OS.
+       - git clone git://opencircuitdesign.com/magic This step clones the Magic Repository
+       - sudo apt-get install csh This step installs the csh shell
+       - cd magic This step is to go into the cloned directory
+       - ./configure This step runs the configure script
+       - make This step runs the make command to compile
+       - sudo make install This step installs magic on the device
   
+    - Development Flow:
   
+  <img width="244" alt="Screenshot 2022-03-06 at 11 15 09 AM" src="https://user-images.githubusercontent.com/77117825/156910939-20d2d822-7c0f-4f82-911c-59f7d8381180.png">
   
-  
-  
+   - It is often the case that after each simulation phase, we would need to make several changes to the circuit to bring it closer to the required specifications.
+
+  # Part 6: Introduction to PDK, specifications and pre-layout circuits
+   
+  - The PDK (Process Design Kit) Content:
+    - io: input-output
+    - pr: primitives (spice)
+    - sc: standard cell
+    - hd: high density
+    - hs: high speed
+    - lp: low power
+    - hdll: high density low leakage
+  - PDK is provided by the fabrication centres because thats where the transistors get fabricated.
+  - The characteristics of those transistors in the technology node of interest are available to us through the scripts.
+  - Other than transistor characteristics, a lot of information is available to help the design process.
+  - The specifications give the operationg condition at which the PLL has to operate.
+  - It is based on these specifications, that we will design the circuit.
+  - We will use the simplified IP specifications from VSD for our PLL design:
+    - Corner - TT
+    - Supply - 1.8V
+    - Room Temperature
+    - VCO mode and PLL mode
+    - Input Fmin = 5MHz and Fmax = 12.5MHz
+    - Multiplier - 8x
+    - Jitter (RMS) <~ 20ns
+    - Duty Cycle - 50%
+                      
+  - The first three specifications together are called as PVT corner or Process-Voltage-Temperature corner
+  - Pre-layout:
+    - This phase is all about development and the transistor level simulation of the circuits.
+    - In this phase all the circuits are developed in such a way that most of the disadvantages are already overcome.     
+                      
+  # Part 7: Circuit design simulation tool - Ngspice Setup
+    - The first step is to install ngspice using ubuntus package manager.
+    - Next, we have to clone the google skywater pdk. On the terminal type git clone https://github.com/google/skywater-pdk-libs-sky130_fd_pr.git
+    - Now we have to pick the files that we need from "skywater-pdk-libs-sky130_fd_pr" folder
+    - Go to the cells folder and search nfet and in nfet folder search "nfet_01v8". Again, search "tt" and chose the file named "sky130_fd_pr__nfet_01v8__tt_leak.pm3.spice". Copy this file to the directory that will be used for PLL simulations.
+    - Go to the cells folder and search pfet and in nfet folder search "pfet_01v8". Again, search "tt" and chose the file named "sky130_fd_pr__pfet_01v8__tt_leak.pm3.spice". Copy this file to the directory that will be used for PLL simulations.
+    - Go to models and then go to parameters and copy the files "invariant.spice" and "lod.spice" to the directory that will be used for PLL simulations.
+    - Now in terminal go to the directory that will be used for PLL simulations.
+    - In the terminal type the command nano sky130.lib.
+    - Now, include all the files that were just copied.
+    - Save this file using ctrl+s and then exit using ctrl+x.
+    
+  # Part 8: Layout design tool - Magic Setup
+                      
+ - The first step is to clone the magic repository (given in Part 5)
+ - Now we have to install the dependancies which can be found at the [Install](http://opencircuitdesign.com/magic/) page
+ - Now go into the magic folder using the "cd" command and compile magic using ./configure command.
+ - Run the configure, make and install commands on the terminal.
+ - Search open pdks on google and select the RTimothy/open_pdks
+ - Clone this repository and compile it or download sky130A.tech and place it in the main folder.
+ - **This is the end of the tasks of the first day.
+
+                      
+                      
+                      
+                      
+                      
+                      
