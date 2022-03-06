@@ -487,7 +487,7 @@ On the first day of the workshop, basic theory of the PLL was taught. The multip
 
 <p align="center"><img width="833" alt="Screenshot 2022-03-06 at 1 05 06 PM" src="https://user-images.githubusercontent.com/77117825/156913727-5b4fd63e-a944-4876-8b6b-dfce1a6fa67a.png"></p>
 
-# Part 11: Steps to combine PLL sub-circuits and PLL full design simulation
+# Part 10: Steps to combine PLL sub-circuits and PLL full design simulation
 
  > PLL circuit 
 
@@ -670,8 +670,83 @@ On the first day of the workshop, basic theory of the PLL was taught. The multip
 > zoomed view 2 ( if we zoom in at the bottom, we can the the difference between the reference signal in red and the output frequency divided by 8 signal as shown below:)
 <p align="center"><img width="836" alt="Screenshot 2022-03-06 at 2 26 33 PM" src="https://user-images.githubusercontent.com/77117825/156916128-b74de461-0b0f-4e71-be4f-a0aa5acfb87b.png"></p>
 
+   -  This difference in output signal divided by 8 and the reference signal is the phase noise of this PLL that we created.
+   -  If the PLL becomes perfect, which is an ideal case, then the blue feedback signal will overlap the red reference signal perfectly which is what we wish for.
+   -  If we take the root-mean-square (RMS) of the variation of the output signal, we get the Jitter (RMS) value which denotes the phase noise.
+   -  It is important to note that this blue signal is in-fact created by the VCO.
+# Part 11: Troubleshooting steps
+
+  - Observe what kind of issue is faced.
+  - Always debug individual components fully before moving to the combined simulation.
+  - Check if any signals are coming flat or if the simulation is crashing. If this is the case then check if all the connections are done properly. Also check if there are any issues like wrong naming, capitalization issues or parameter value issues.
+  - If the signals are right but the mimicking is not happening then verify the following:
+    - For what range of frequencies is the VCO working properly: Is our required output frequency range lying in the VCO's working range.
+    - Is the Phase Frequency Detector able to detect the differences: If the phase difference is very small, the PFD might not be able to detect it.
+    - Is the rate of Charge Pump output charging and discharging fast: Is it too fast or too slow? Is there too much fluctuations in charging or discharging? This means that the transistor sizing is the thing to pay attention to. Check the response of the CP when 0V is given as the input. If it is still charging then the charge leakage is the issue.
+    - Whether the loop filter values are working out: This can be found out using the thumb rules
 
 
+# Part 12: Layout design
+ - To open magic first enter the directory containing the "sky130A.tech" file using the "cd" commands.
+ - Type magic -T sky130A.tech in the terminal window.
+ - The way to draw here in magic is first to make a box and then fill it with a material.
+ - By left clicking, we fix the left bottom corner of the box.
+ - By right clicking, we fix the right top corner of the box.
+ - If we hover upon a layer (layers panel is present on the right hand side of the window), we can see the name of the layer on the top right corner of the screen.
+ - By middle clicking on a layer, the box gets filled by the selected layer.
+ - Materials needed for the transistors:
+   - P-diffusion for the PMOS and N-diffusion for the NMOS.
+   - For the gate, polysilicon layer is needed.
+ - DRC error means that there is a size issue or a closeness issue. To know what exactly the issue is, select some part of the error region and press the "?" button on the keyboard and then the error will show up on the "magic command window".
+ - Before creating a PMOS, we must create an N-Well region and then place the PMOS over it.
+ - To copy a transistor, make a box around the transistor and press "A" button on the keyboard. Now, place the cursor where we wish to copy it and press "C" button. If we press the "M" button then it becomes the move operation.
+ - For placing Vdd and ground, place the metal1 layer.
+ - To connect two transistors, use the loacal interconnect layer (locali) like a wire.
+ - To connect two layers, look for contact layers in the tray. They are represented with a cross symbol.
+ - As long as we do not connect a contact, two different layers will not touch even if they overlap.
+ - If we get a DRC error at this point it means that either the size of the contact is too small or the region of metal1 and local interconnect around the contact is not enough.
+ - To create a label, draw a line around the edge of the layer that we want to label. A line is drawn by making a box of zero thickness. Type the command label name in the magic command window. Name can be any name to be used as label.
+ - To make a port, draw a box around the label and type port make in the magic command window.
+ - We need to make ports because when we extract the parasitics from our design, the input and output ports will automatically have these names as we have labelled them as ports. 
 
 
-                      
+# Part 13: Layout Walkthrough
+
+  - We saw the previously designed magic files of the following circuits:
+    - Frequency Divider
+     <img width="1343" alt="FD post layout" src="https://user-images.githubusercontent.com/77117825/156919353-904cd3de-b47a-41f3-97eb-de11f4133ea8.png">
+    - Phase Frequency Detector
+      - In the PFD design, on the right side, there are two similar drawings on the top and on the bottom.
+      - They are additional buffers that were kept for getting full swing.
+     <img width="1239" alt="PFD post layout" src="https://user-images.githubusercontent.com/77117825/156919415-775476f1-29e8-4a5e-9544-c80f7c2167a9.png">
+ 
+    - Charge Pump
+      - Top most long transistor is just for enabling or disabling the charge pump.
+      - Right below it is the upper current source. This much difference in the size of the transistor for the current source is to allow maximum current for the charging and discharging process.
+      - Two inverters on the left create the UPz and the DOWNz signals (UPz = up bar and DOWNz = down bar or their inverted variants).
+      <img width="1167" alt="CP post layout" src="https://user-images.githubusercontent.com/77117825/156919437-2748cb42-f7ef-4a5d-a581-bf756eae98d9.png">
+
+    - Voltage Controlled Oscillator
+      - There are seven inverters to reduce the range of frequencies that we are dealing with.
+      - Only the last inverter in the inverter is large to improve the driving strength of the oscillator.
+      - There is an additional inverter at the end and its purpose is to obtain a full swing for the output.
+      - At the top there is a small PMOS that acts as an enable or disable for the VCO.
+# Part 14: Parasitic Extraction 
+ - In order to do the parasitics extraction follow the steps given below:
+
+ - Open the magic file of the circuit that is to be extracted.
+ - Press "I" button on the keyboard. It selects the whole design.
+ - In the magic command window type extract all. This extracts the layout connectivity information into a ".ext" file.
+ - Generally, if there are any warnings at this point, they would be because of wrong connections or short circuits or etc. But these are warnings and need not be errors.
+ - Now, we need to convert the ".ext" file to a ".spice" file to use for simulations.
+ - In the magic command window type ext2spice cthresh 0 rthresh 0 and then type ext2spice.
+ - Here the cthreshold 0 and rthreshold 0 setting is given to tell magic that if any amount of capacitive or resistive effect is present, then we want to extract it.
+ - In the spice we find a .option scale=10000u. Every parameter in the spice file is multiplies by this scale.
+ - For our case, since we know that the scaling factor is 10n so change the .option command from scale=10000u to scale=10n.
+<p align="center"><img src="https://user-images.githubusercontent.com/77117825/156920442-c7df11ee-b2c6-4993-8976-9989bd5f01af.jpeg"></p>
+
+# Part 15: Post Layout simulations
+ 
+ - First extract the spice file from the "PFD.mag" file (as done in Part 15)
+ - Now using the terminal enter the directory where "sky130nm.lib" and "PFD.spice" are saved using the "cd" command.
+ - Type the command nano PFD_postlay.cir in the terminal as shown:
