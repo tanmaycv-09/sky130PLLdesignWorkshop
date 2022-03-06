@@ -747,6 +747,59 @@ On the first day of the workshop, basic theory of the PLL was taught. The multip
 
 # Part 15: Post Layout simulations
  
- - First extract the spice file from the "PFD.mag" file (as done in Part 15)
+ - First extract the spice file from the "PFD.mag" file (as done in [Part 14](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/blob/main/README.md#part-14-parasitic-extraction))
  - Now using the terminal enter the directory where "sky130nm.lib" and "PFD.spice" are saved using the "cd" command.
- - Type the command nano PFD_postlay.cir in the terminal as shown:
+ - Type the command nano PFD_postlay.cir in the terminal 
+
+       - .include spice_lib/sky130.lib
+         .include PFD.spice
+
+         xx1 Ref_Clk Up Down Clk2 GND VCC PFD
+
+         v1 VDD GND 1.8v
+
+         v2 Ref_Clk GND PULSE 0 1.8v 0 6p 6p 40n 80n
+
+         v3 Clk2 GND PULSE 0 1.8v 10n 6p 6p 40n 80n
+
+         .control 
+         tran 0.1n 5u
+         plot v(Up) v(Down)+2 v(Ref_Clk)+4 v(Clk2)+6
+         .endc
+
+         .end
+    - In the terminal, it looks like:
+
+
+<p align="center"><img width="831" alt="Screenshot 2022-03-06 at 4 47 17 PM" src="https://user-images.githubusercontent.com/77117825/156920731-cd902884-23b5-4170-a38c-2f3a7e1a17b6.png"></p>
+
+   - Now save this file using the ctrl+S command and exit it using the ctrl+X command.
+   - Run this file using ngspice as shown:
+  
+<p align="center"><img width="835" alt="Screenshot 2022-03-06 at 4 48 26 PM" src="https://user-images.githubusercontent.com/77117825/156920768-4973448c-07dd-4263-a8bf-20e7f4c6ee50.png"></p>
+
+   - The zoomed version of the output looks like:
+ 
+<p align="center"><img width="831" alt="Screenshot 2022-03-06 at 4 49 32 PM" src="https://user-images.githubusercontent.com/77117825/156920804-6d6f99b7-6d92-4cb6-aaf4-f8ec5a9ef1fe.png"></p>
+ 
+   - Now we will simulate it for a phase difference between Ref_Clk and Clk2 to be 1ns.
+   - To do so change the line from v3 Clk2 GND PULSE 0 1.8v 10n 6p 6p 40n 80n to v3 Clk2 GND PULSE 0 1.8v 1n 6p 6p 40n 80n
+   - After doing this the file, opened in terminal should look like:
+
+<p align="center"><img width="832" alt="Screenshot 2022-03-06 at 4 50 45 PM" src="https://user-images.githubusercontent.com/77117825/156920852-dcf9b351-05c3-4003-a7c9-374522c11cf4.png"></p>
+
+   - The output now looks like:
+
+<p align="center"><img width="835" alt="Screenshot 2022-03-06 at 4 51 42 PM" src="https://user-images.githubusercontent.com/77117825/156920877-0360b1b3-3254-4954-accc-5c09bb0593f1.png"></p>
+
+   - The zoomed output looks like:
+
+<p align = "center"><img width="835" alt="Screenshot 2022-03-06 at 4 52 31 PM" src="https://user-images.githubusercontent.com/77117825/156920907-c4d2dfe0-5a67-410d-9a8a-0d7f6501b1f5.png"></p>
+
+   - So, the phase difference of even 1ns is detected.
+   - This performance is possible because of the circuit that we have chosen for the PFD.
+   - The default circuit that was discussed in the theory has the dead zone issue which doesn't allow the detection of such narrow phase differences.
+
+
+
+
