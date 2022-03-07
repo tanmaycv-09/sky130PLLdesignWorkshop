@@ -24,7 +24,6 @@
      - [Part 13: Layout Walkthrough](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-13-layout-walkthrough)
      - [Part 14: Parasitic Extraction ](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-14-parasitic-extraction)
      - [Part 15: Post Layout simulations](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-15-post-layout-simulations)
-     - [Part 16: Tapeout theory](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#part-16-tapeout-theory)
      - [Conclusion, Opinion & Challenges ](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#conclusion-opinion--challenges)
      - [References](https://github.com/tanmaycv-09/sky130PLLdesignWorkshop/edit/main/README.md#references)
 
@@ -897,15 +896,6 @@ On the first day of the workshop, basic theory of the PLL was taught. The multip
 
 <p align="center"><img width="834" alt="Screenshot 2022-03-06 at 5 15 40 PM" src="https://user-images.githubusercontent.com/77117825/156921605-b5bdf4ba-193a-4793-9a99-574d9e0e3ad8.png"></p>
 
-# Part 16: Tapeout theory
-
-  - Tapeout means to send our final design to the Fab, after preparing it.
-  - Preparing the requires adding the following to the chip:
-     - Input-Output Pads
-     - Peripherals
-     - Memory
-     - Testing Mechanisms
-     - Others
 
 # Conclusion, Opinion & Challenges 
 This workshop was very helpful as it increased my knowledge on the subject PLL, i also learnt about how to use the tools and did all the simulations. This workshop cleared all my basic concepts of the PLL and the experience of getting a Silicon Proven Model ready was amazing. I stucked during the 2nd day at a point when i was not able to run the simulation because i was not including the files through the right path and i almost spend my half day in solving the error, i was so disappointed to a point that i thought of giving up, but Kunal Sir and Lakshmi mam they keep on answering my questions in the slack channel and around 6 p.m. i found out what was the problem.
